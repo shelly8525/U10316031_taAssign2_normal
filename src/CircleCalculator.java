@@ -1,7 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class CircleCalculator extends JFrame {
 	private JTextField JRadius = new JTextField(10);
@@ -39,22 +46,30 @@ public class CircleCalculator extends JFrame {
 	private class ButtonListener1 implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
+			double radius = Double.parseDouble(JRadius.getText());
+			double area;
+			double perimeter;
 			
+			area = radius * radius * Math.PI;
+			perimeter = 2* radius * Math.PI;
 			
+			JArea.setText(String.format("%.2f",area));
+			JPerimeter.setText(String.format("%.2f",perimeter));
 		}
 	}
 	
 	private class ButtonListener2 implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
-			
-			
+			JRadius.setText("");
+			JArea.setText("");
+			JPerimeter.setText("");
 		}
 	}
 	public static void main(String[] args){
 		CircleCalculator frame = new CircleCalculator();
 		frame.pack();
-		frame.setSize(500,400);
+		frame.setSize(350,400);
 		frame.setTitle("U10316031_GeoCalculate");
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
