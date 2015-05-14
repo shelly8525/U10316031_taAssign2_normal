@@ -69,10 +69,10 @@ public class CircleCalculator extends JFrame {
 		P2.add(p22,BorderLayout.SOUTH);
 		
 		JPanel p31 = new JPanel(new FlowLayout());
-		p21.add(new JLabel("Length1:"));
-		p21.add(JLength1);
-		p21.add(calculator2);
-		p21.add(clean2);
+		p31.add(new JLabel("Length1:"));
+		p31.add(JLength1);
+		p31.add(calculator2);
+		p31.add(clean2);
 		
 		JPanel p32 = new JPanel(new GridLayout(2,2,2,2));
 		p32.add(new JLabel("The area is:"));
@@ -87,10 +87,12 @@ public class CircleCalculator extends JFrame {
 		P2.setBorder(new TitledBorder("Square:"));
 		P3.setBorder(new TitledBorder("Triangle:"));
 		
-		add(P1,BorderLayout.NORTH);
-		add(P2,BorderLayout.CENTER);
-		add(P3,BorderLayout.SOUTH);
+		JPanel K = new JPanel(new GridLayout(3,1,1,1));
+		K.add(P1);
+		K.add(P2);
+		K.add(P3);
 		
+		add(K);
 		
 		calculator.addActionListener(new ButtonListener1());
 		clean.addActionListener(new ButtonListener2());
@@ -98,8 +100,8 @@ public class CircleCalculator extends JFrame {
 		calculator1.addActionListener(new ButtonListener21());
 		clean1.addActionListener(new ButtonListener22());
 		
-		calculator2.addActionListener(new ButtonListener21());
-		clean2.addActionListener(new ButtonListener22());
+		calculator2.addActionListener(new ButtonListener31());
+		clean2.addActionListener(new ButtonListener32());
 	}
 	
 	private class ButtonListener1 implements ActionListener{
@@ -150,10 +152,34 @@ public class CircleCalculator extends JFrame {
 		}
 	}
 	
+	private class ButtonListener31 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e){
+			double length1 = Double.parseDouble(JLength1.getText());
+			double area2;
+			double perimeter2;
+			
+			area2 = length1 * length1 * 0.25 * Math.pow(3,0.5);
+			perimeter2 = 3* length1;
+			
+			JArea2.setText(String.format("%.2f",area2));
+			JPerimeter2.setText(String.format("%.2f",perimeter2));
+		}
+	}
+	
+	private class ButtonListener32 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e){
+			JLength1.setText("");
+			JArea2.setText("");
+			JPerimeter2.setText("");
+		}
+	}
+	
 	public static void main(String[] args){
 		CircleCalculator frame = new CircleCalculator();
 		frame.pack();
-		frame.setSize(700,800);
+		frame.setSize(350,500);
 		frame.setTitle("U10316031_GeoCalculate");
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
